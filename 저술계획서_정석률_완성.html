@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>저술계획서 - 정석률 단독저서</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 20mm 25mm 20mm 25mm;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', '맑은 고딕', sans-serif;
+            font-size: 10pt;
+            color: #000;
+            background: #e8e8e8;
+            line-height: 1.6;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 10mm auto;
+            padding: 20mm 25mm;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        @media print {
+            body { background: #fff; }
+            .page {
+                margin: 0;
+                padding: 20mm 25mm;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+
+        /* Title */
+        .doc-title {
+            text-align: center;
+            font-family: 'Noto Serif KR', '바탕', serif;
+            font-size: 22pt;
+            font-weight: 700;
+            letter-spacing: 18px;
+            margin-bottom: 24px;
+            padding-bottom: 8px;
+        }
+
+        /* Common table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        td, th {
+            border: 1px solid #000;
+            padding: 6px 8px;
+            vertical-align: middle;
+            font-size: 10pt;
+            word-break: keep-all;
+        }
+
+        /* Header info table */
+        .info-table .label-cell {
+            background-color: #d6e4f0;
+            text-align: center;
+            font-weight: 500;
+            font-size: 9.5pt;
+        }
+
+        .info-table .value-cell {
+            text-align: center;
+        }
+
+        /* TOC box */
+        .toc-box {
+            border: 1px solid #000;
+            margin-top: 20px;
+            padding: 16px 24px;
+        }
+
+        .toc-title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 10.5pt;
+            margin-bottom: 10px;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: baseline;
+            margin: 5px 0;
+            font-size: 10pt;
+        }
+
+        .toc-item.sub {
+            padding-left: 20px;
+        }
+
+        .toc-item .toc-label {
+            white-space: nowrap;
+        }
+
+        .toc-item .toc-dots {
+            flex: 1;
+            border-bottom: 1px dotted #555;
+            margin: 0 6px;
+            position: relative;
+            top: -3px;
+        }
+
+        .toc-item .toc-page {
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        /* Section headings */
+        .section-heading {
+            font-size: 12pt;
+            font-weight: 700;
+            margin-top: 28px;
+            margin-bottom: 14px;
+        }
+
+        .section-heading:first-child {
+            margin-top: 0;
+        }
+
+        /* Sub headings */
+        .sub-heading {
+            font-size: 11pt;
+            font-weight: 700;
+            margin: 20px 0 10px 0;
+        }
+
+        .sub-sub-heading {
+            font-size: 10pt;
+            font-weight: 700;
+            margin: 14px 0 8px 0;
+        }
+
+        /* Paragraph */
+        p {
+            font-size: 10pt;
+            margin-bottom: 8px;
+            text-align: justify;
+            text-indent: 10px;
+            line-height: 1.7;
+        }
+
+        p.no-indent {
+            text-indent: 0;
+        }
+
+        /* Sub items (checkbox) */
+        .sub-item {
+            margin: 6px 0 6px 8px;
+            font-size: 10pt;
+        }
+
+        .sub-item span.checkbox {
+            margin-right: 4px;
+        }
+
+        /* Schedule table label */
+        .schedule-label {
+            text-align: center;
+            font-size: 10pt;
+            font-weight: 500;
+            margin: 16px 0 10px 0;
+        }
+
+        /* Schedule tables */
+        .schedule-table {
+            margin-bottom: 18px;
+        }
+
+        .schedule-table .year-header {
+            background-color: #d6e4f0;
+            text-align: center;
+            font-weight: 600;
+            font-size: 10pt;
+        }
+
+        .schedule-table .goal-label {
+            background-color: #eef3f8;
+            text-align: center;
+            font-weight: 500;
+            font-size: 9.5pt;
+        }
+
+        .schedule-table .goal-value {
+            text-align: left;
+            padding: 6px 10px;
+            font-size: 9.5pt;
+        }
+
+        .schedule-table .col-header {
+            background-color: #eef3f8;
+            text-align: center;
+            font-weight: 500;
+            font-size: 9.5pt;
+            padding: 6px 4px;
+        }
+
+        .schedule-table .period-cell {
+            text-align: center;
+            font-size: 9.5pt;
+            padding: 5px 4px;
+        }
+
+        .schedule-table .content-cell {
+            padding: 5px 8px;
+            font-size: 9pt;
+        }
+
+        .schedule-table .note-cell {
+            text-align: center;
+            padding: 5px 4px;
+            font-size: 9pt;
+        }
+
+        /* Chapter table */
+        .chapter-table td, .chapter-table th {
+            font-size: 9.5pt;
+            padding: 4px 8px;
+            vertical-align: top;
+        }
+        .chapter-table th {
+            background-color: #eef3f8;
+            font-weight: 500;
+            text-align: center;
+        }
+        .chapter-table .part-header {
+            background-color: #d6e4f0;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* Info table (generic - for 연구역량, 출판계획) */
+        .data-table {
+            margin: 12px 0;
+        }
+        .data-table td, .data-table th {
+            font-size: 9.5pt;
+            padding: 5px 8px;
+        }
+        .data-table th {
+            background-color: #eef3f8;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Reference list */
+        .ref-list {
+            list-style: none;
+            padding-left: 18px;
+            font-size: 9pt;
+        }
+        .ref-list li {
+            text-indent: -18px;
+            padding-left: 18px;
+            margin-bottom: 4px;
+            line-height: 1.5;
+        }
+
+        /* Utility */
+        .page-break {
+            page-break-before: always;
+        }
+
+        .check {
+            font-weight: 700;
+        }
+
+        .bold { font-weight: 700; }
+    </style>
+</head>
+<body>
+
+<!-- ==================== Page 1: 표지 ==================== -->
+<div class="page">
+    <h1 class="doc-title">저 술 계 획 서</h1>
+
+    <table class="info-table">
+        <colgroup>
+            <col style="width: 13%;">
+            <col style="width: 11%;">
+            <col style="width: 38%;">
+            <col style="width: 38%;">
+        </colgroup>
+        <tr>
+            <td class="label-cell" colspan="2" style="height: 48px;">사 업 명</td>
+            <td class="value-cell" colspan="2" style="font-size: 11pt;">2026년 저술지원사업</td>
+        </tr>
+        <tr>
+            <td class="label-cell" rowspan="2" style="height: 96px;">연구과제명</td>
+            <td class="label-cell" style="height: 48px;">국 문</td>
+            <td colspan="2" class="value-cell" style="font-size: 9pt; text-align: left; padding: 6px 10px;">당신의 근육이 수명을 결정한다: 스포츠의학이 밝히는 생애주기 건강수명의 과학</td>
+        </tr>
+        <tr>
+            <td class="label-cell" style="height: 48px;">영 문</td>
+            <td colspan="2" class="value-cell" style="font-size: 8.5pt; text-align: left; padding: 6px 10px;">Your Muscles Determine Your Lifespan: The Science of Life-Course Healthy Longevity from Sports Medicine</td>
+        </tr>
+        <tr>
+            <td class="label-cell" colspan="2" rowspan="2" style="line-height: 1.6;">
+                지원유형<br><span style="font-size: 8.5pt;">(해당되는 부분에 ○ 체크)</span>
+            </td>
+            <td class="value-cell" style="vertical-align: middle; font-size: 11pt; height: 40px;">학술서</td>
+            <td class="value-cell" style="vertical-align: middle; font-size: 11pt; height: 40px;">교양서</td>
+        </tr>
+        <tr>
+            <td class="value-cell" style="height: 40px;">☐</td>
+            <td class="value-cell" style="height: 40px;"><span class="check">○</span></td>
+        </tr>
+        <tr>
+            <td class="label-cell" colspan="2" rowspan="2" style="line-height: 1.6;">
+                총 연구기간<br><span style="font-size: 8.5pt;">(해당되는 부분에 ○ 체크)</span>
+            </td>
+            <td class="value-cell" style="vertical-align: middle; font-size: 11pt; height: 40px;">2년</td>
+            <td class="value-cell" style="vertical-align: middle; font-size: 11pt; height: 40px;">3년</td>
+        </tr>
+        <tr>
+            <td class="value-cell" style="height: 40px;">☐</td>
+            <td class="value-cell" style="height: 40px;"><span class="check">○</span> <span style="font-size: 8.5pt;">(2026.6.1. ~ 2029.5.31.)</span></td>
+        </tr>
+    </table>
+
+    <div class="toc-box">
+        <div class="toc-title">&lt;목차&gt;</div>
+        <div class="toc-item">
+            <span class="toc-label">1. 저술계획</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">2</span>
+        </div>
+        <div class="toc-item sub">
+            <span class="toc-label">가. 일반사항</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">2</span>
+        </div>
+        <div class="toc-item sub">
+            <span class="toc-label">나. 추진일정</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">9</span>
+        </div>
+        <div class="toc-item">
+            <span class="toc-label">2. 출판계획</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">11</span>
+        </div>
+        <div class="toc-item">
+            <span class="toc-label">3. 연구역량</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">13</span>
+        </div>
+        <div class="toc-item">
+            <span class="toc-label">4. 기타(참고문헌 포함)</span>
+            <span class="toc-dots"></span>
+            <span class="toc-page">16</span>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== 1. 저술계획 - 가. 일반사항 ==================== -->
+<div class="page page-break">
+    <div class="section-heading">1. 저술계획</div>
+
+    <div class="sub-heading">가. 일반사항</div>
+
+    <div class="sub-sub-heading">1) 저술 목적</div>
+
+    <p>대한민국은 2025년 65세 이상 노인 인구가 전체의 20%를 초과하며 초고령사회에 진입하였다. 고령화와 함께 대사증후군, 제2형 당뇨병, 심혈관질환, 근감소증 등 만성질환 유병률이 급증하고 있으며, 30세 이상 성인의 대사증후군 유병률은 33.7%에 달한다(질병관리청, 2024). 65세 이상 노인의 연간 낙상 발생률은 약 20%이며, 낙상으로 인한 골절과 기능 장애는 노년기 삶의 질을 급격히 저하시키는 주요 원인이다. 그러나 이러한 만성질환과 기능 저하의 상당 부분은 규칙적인 신체활동을 통해 예방하거나 지연시킬 수 있다는 과학적 근거가 축적되어 있음에도 불구하고, 스포츠의학과 운동생리학의 연구 성과가 일반 시민에게 충분히 전달되지 못하고 있는 실정이다.</p>
+
+    <p>본 저술은 스포츠의학과 운동생리학의 관점에서, 신체활동이 대사 건강을 매개로 건강수명에 이르는 과학적 경로를 일반 독자가 이해할 수 있는 교양서로 집필하는 것을 목적으로 한다. 구체적으로, ① 근육이 단순한 운동 기관이 아니라 대사 건강을 조절하는 내분비 기관이라는 최신 과학적 발견을 일반 독자 눈높이에서 소개하고, ② 악력 하나만으로 전신 건강 상태를 가늠할 수 있다는 실용적 근거를 제시하며, ③ 청소년기부터 노년기까지 생애주기에 걸쳐 신체활동 습관이 어떤 경로로 건강수명에 기여하는지를 국가 건강 데이터(국민건강영양조사, 고령화연구패널, 청소년건강행태조사)에 기반하여 실증적으로 서술하고, ④ 한국인과 미국인의 비교를 통해 인종·체형별 운동 효과의 차이를 규명하여 한국인에게 최적화된 신체활동 전략을 제안한다. 이를 통해 독자가 자신의 생애주기에 맞는 운동 전략을 수립하고, 건강수명을 능동적으로 관리할 수 있는 과학적 근거와 실천 동기를 제공하고자 한다.</p>
+
+    <p>저자(정석률)는 고려대학교 대학원 운동생리학 박사로서, 차 의과학대학교 스포츠의학전공 학과장으로 재직하며 운동생리학, 비만관리, VR 트레이닝을 전공하고 있다. 국가대표 필드하키팀 트레이너 경험, 건강운동관리사 자격, KNHANES 대규모 데이터 분석 논문(J. Clin. Med., 2025, SCIE) 등 연구 현장과 임상 현장을 아우르는 경력을 바탕으로, 학술적 엄밀성과 대중적 접근성을 겸비한 교양서를 집필할 수 있는 역량을 갖추고 있다.</p>
+
+    <div class="sub-sub-heading">2) 저술 내용</div>
+
+    <p>본 저서는 총 4부 16장으로 구성되며, 출간 도서 기준 약 330쪽 분량으로 계획한다. 각 부의 내용은 다음과 같다.</p>
+
+    <p class="no-indent"><b>■ 제1부: 왜 지금 '근육'인가 — 초고령사회와 건강수명 (약 80쪽)</b></p>
+    <p>제1부는 독자가 건강수명과 근육의 관계를 이해할 수 있도록 안내하는 도입부이다. 제1장 '오래 사는 것과 건강하게 사는 것은 다르다'에서는 한국의 인구 구조 변화(65세 이상 19.2%, 2035년 30% 전망)와 건강수명의 개념을 소개하고, 평균수명과 건강수명 사이의 격차(약 9~10년)가 의미하는 바를 데이터와 사례로 제시한다. 제2장 '대사 건강이란 무엇인가: 혈당, 혈압, 지질의 삼각 관계'에서는 대사증후군의 진단 기준(Modified NCEP-ATP III)과 각 지표의 의미를 일반 독자 눈높이에서 설명하며, 인슐린 저항성, 만성 저등급 염증 등 대사 이상의 핵심 기전을 쉬운 비유와 도해로 풀어낸다. 제3장 '근감소증: 노화의 시작은 근육의 감소에서 온다'에서는 근감소증(sarcopenia)의 정의(AWGS 2019 기준, Chen et al., 2020)와 역학을 소개하고, 근육 감소가 대사 기능 저하, 낙상, 기능 장애, 사망으로 이어지는 연쇄 경로를 설명한다. 제4장 '숫자로 보는 한국인의 몸: 국민건강영양조사가 말하는 것'에서는 KNHANES 약 8만 명 데이터를 활용하여 한국인의 성별·연령별 체성분(DXA), 악력, 대사 지표 분포를 시각화하고, 대사증후군과 근감소증의 동반 현황을 구체적 수치로 제시한다.</p>
+
+    <p class="no-indent"><b>■ 제2부: 움직임의 과학 — 운동은 몸을 어떻게 바꾸는가 (약 90쪽)</b></p>
+    <p>제2부는 신체활동이 인체에 미치는 생리학적·대사적 효과를 과학적 근거와 함께 서술하는 핵심부이다. 제5장 '유산소 운동 vs 근력 운동: 두 날개가 필요한 이유'에서는 유산소 운동과 근력 운동이 에너지 대사, 미토콘드리아 기능, 호르몬 반응, 심폐 기능에 미치는 차별적 효과를 설명하고, WHO의 신체활동 권고 기준(주당 150~300분 중강도 유산소 + 주 2회 근력 운동)의 과학적 배경을 제시한다. Momma 등(2022)의 메타분석에서 주 30~60분의 근력 운동이 전인 사망률을 10~17% 낮추는 것으로 보고된 근거도 함께 다룬다. 제6장 '근육은 내분비 기관이다: 마이오카인이 만드는 건강 네트워크'에서는 운동 시 근육에서 분비되는 마이오카인(IL-6, BDNF, Irisin, Myonectin 등)이 지방 조직, 간, 뇌, 뼈 등 원격 장기와 교신하여 대사 기능을 조절하고 만성 염증을 억제하는 최신 연구 성과를 소개한다. 제7장 '악력 하나로 읽는 내 몸의 건강 신호'에서는 악력이 전신 근력과 대사 건강의 바로미터임을 역학 데이터로 설명하고, 저자의 연구에서 도출한 한국인 성별·연령별 악력 기반 근감소증 진단 기준점(ROC 분석, Youden Index)을 소개하며, 독자가 스스로 자신의 근력 수준을 점검할 수 있는 실용적 가이드를 제공한다. 제8장 '운동이 대사증후군을 되돌린다: 8만 명 데이터의 증거'에서는 KNHANES 데이터 기반 다변량 로지스틱 회귀분석 결과를 바탕으로, 신체활동 수준별 대사 지표(혈당, HbA1c, 지질, 혈압, 체지방률)의 차이를 시각적으로 제시하고, 어느 정도의 운동이 어떤 수준의 대사 개선을 가져오는지에 대한 구체적인 효과 크기(Odds Ratio)를 독자에게 전달한다.</p>
+
+    <p class="no-indent"><b>■ 제3부: 생애주기, 건강은 어떻게 쌓이고 무너지는가 (약 100쪽)</b></p>
+    <p>제3부는 청소년기부터 노년기까지 신체활동의 효과가 어떻게 축적되는지를 생애주기 관점에서 추적하며, 본 저서의 학술적 독창성이 집중된 부분이다. 제9장 '10대의 운동 습관이 30대의 건강을 만든다'에서는 청소년건강행태조사(KYRBS, 약 6만 명)와 KNHANES의 출생코호트 비교 분석을 통해, 고등학교 시절 고강도 신체활동과 근력강화운동에 참여한 출생연도 집단이 10년 후 성인기에 보이는 체성분·대사 지표의 차이를 탐색적으로 제시한다. 동일인 추적이 아닌 출생코호트 비교라는 방법론적 한계를 명확히 밝히면서도, 생애 초기 신체활동 투자의 중요성을 환기한다. 제10장 '성인기의 대사 건강이 노년기의 방패가 된다'에서는 KNHANES와 고령화연구패널(KLoSA, 약 1만 명, 16년간 추적)의 통계적 매칭 분석 결과를 바탕으로, 성인기에 양호한 체성분과 근력을 유지한 집단이 노년기에 낙상, ADL/IADL 장애, 사망 위험이 유의하게 낮다는 경로를 실증 데이터로 보여준다. 통계적 매칭의 원리(완전 일치 매칭 → 근접 매칭 → 부트스트래핑)를 일반 독자도 이해할 수 있는 비유로 설명하여, 다중 패널 연계 분석의 방법론적 가치를 전달한다. 제11장 '낙상은 운명이 아니다: 근력이 막아주는 노년기 위기'에서는 노년기 낙상의 역학(발생률, 골절율, 사망 연관)을 제시하고, 근감소증과 낙상의 인과 경로를 매개분석(Baron &amp; Kenny, 1986; 부트스트랩 5,000회)으로 검증한 결과를 소개하며, 낙상 예방을 위한 근력 운동 프로그램의 실제 사례를 제시한다. 제12장 '건강수명은 계산할 수 있다: 신체활동 시나리오별 미래 예측'에서는 Sullivan 방법(1971)을 활용한 건강수명 산출의 원리를 일반 독자도 이해할 수 있도록 설명하고, 신체활동 증진 시나리오(현재 수준 유지, 10% 증가, 20% 증가)에 따른 건강수명 연장 효과를 구체적 수치로 제시하며, 이것이 의료비 절감과 돌봄 비용 절감에 미치는 사회경제적 효과를 추정한다. 제13장 '한국인과 미국인, 같은 운동 다른 효과?'에서는 미국 NHANES(가속도계 기반 객관적 신체활동 측정, NDI 사망 연계 15년 추적) 데이터에 동일한 분석 틀을 적용한 한-미 비교 결과를 소개하고, 인종·체형·생활습관에 따른 신체활동 효과의 차이를 조명하여 한국인에게 특화된 운동 전략의 필요성을 논의한다.</p>
+
+    <p class="no-indent"><b>■ 제4부: 내일의 건강을 위한 오늘의 실천 (약 60쪽)</b></p>
+    <p>제4부는 앞선 과학적 근거를 바탕으로 독자가 실제로 실천할 수 있는 생애주기별 운동 전략과 건강 관리 가이드를 제시하는 실용부이다. 제14장 '나이별 맞춤 운동 처방전: 10대부터 80대까지'에서는 생애주기별(청소년기, 성인기 전기·후기, 노년기) 신체활동 권고안을 도출하고, 각 시기에 적합한 운동 유형, 강도, 빈도를 구체적으로 제시한다. 특히 노인을 위한 낙상 예방 균형 운동, 악력 강화 운동, 저강도 근력 운동 프로그램을 실제 임상에서 활용되는 프로토콜을 바탕으로 제시한다. 제15장 '수면, 식이, 스트레스: 운동 효과를 배가시키는 생활습관'에서는 수면 부족이 대사 건강에 미치는 부정적 영향(저자의 J. Clin. Med. 2025; Healthcare 2023; IJERPH 2022 연구 결과)과 이를 운동이 어떻게 보완하는지를 설명하고, 영양 섭취(단백질 권장량, 식사 타이밍)와 스트레스 관리가 운동 효과와 어떻게 시너지를 이루는지를 과학적 근거와 함께 제시한다. 제16장 '사회가 함께 움직여야 한다: 건강수명을 위한 정책 제언'에서는 본 저서의 핵심 메시지를 종합하여, 청소년 체육교육 강화, 직장 내 운동 프로그램 확대, 노인 운동 바우처 정책 등 생애주기별 정책 제안을 제시하고, 예방 중심 건강 정책 전환의 과학적 근거와 사회경제적 당위성을 역설한다.</p>
+
+    <div class="sub-sub-heading">3) 도서 구성 세부 목차(안)</div>
+
+    <table class="chapter-table">
+        <colgroup>
+            <col style="width: 8%;">
+            <col style="width: 8%;">
+            <col style="width: 70%;">
+            <col style="width: 14%;">
+        </colgroup>
+        <tr>
+            <th>부</th>
+            <th>장</th>
+            <th>제목</th>
+            <th>예상 쪽수</th>
+        </tr>
+        <tr><td colspan="4" class="part-header">제1부 왜 지금 '근육'인가 — 초고령사회와 건강수명</td></tr>
+        <tr><td style="text-align:center;">1부</td><td style="text-align:center;">1장</td><td>오래 사는 것과 건강하게 사는 것은 다르다</td><td style="text-align:center;">20</td></tr>
+        <tr><td style="text-align:center;">1부</td><td style="text-align:center;">2장</td><td>대사 건강이란 무엇인가: 혈당, 혈압, 지질의 삼각 관계</td><td style="text-align:center;">22</td></tr>
+        <tr><td style="text-align:center;">1부</td><td style="text-align:center;">3장</td><td>근감소증: 노화의 시작은 근육의 감소에서 온다</td><td style="text-align:center;">20</td></tr>
+        <tr><td style="text-align:center;">1부</td><td style="text-align:center;">4장</td><td>숫자로 보는 한국인의 몸: 국민건강영양조사가 말하는 것</td><td style="text-align:center;">18</td></tr>
+        <tr><td colspan="4" class="part-header">제2부 움직임의 과학 — 운동은 몸을 어떻게 바꾸는가</td></tr>
+        <tr><td style="text-align:center;">2부</td><td style="text-align:center;">5장</td><td>유산소 운동 vs 근력 운동: 두 날개가 필요한 이유</td><td style="text-align:center;">24</td></tr>
+        <tr><td style="text-align:center;">2부</td><td style="text-align:center;">6장</td><td>근육은 내분비 기관이다: 마이오카인이 만드는 건강 네트워크</td><td style="text-align:center;">22</td></tr>
+        <tr><td style="text-align:center;">2부</td><td style="text-align:center;">7장</td><td>악력 하나로 읽는 내 몸의 건강 신호</td><td style="text-align:center;">22</td></tr>
+        <tr><td style="text-align:center;">2부</td><td style="text-align:center;">8장</td><td>운동이 대사증후군을 되돌린다: 8만 명 데이터의 증거</td><td style="text-align:center;">22</td></tr>
+        <tr><td colspan="4" class="part-header">제3부 생애주기, 건강은 어떻게 쌓이고 무너지는가</td></tr>
+        <tr><td style="text-align:center;">3부</td><td style="text-align:center;">9장</td><td>10대의 운동 습관이 30대의 건강을 만든다</td><td style="text-align:center;">20</td></tr>
+        <tr><td style="text-align:center;">3부</td><td style="text-align:center;">10장</td><td>성인기의 대사 건강이 노년기의 방패가 된다</td><td style="text-align:center;">22</td></tr>
+        <tr><td style="text-align:center;">3부</td><td style="text-align:center;">11장</td><td>낙상은 운명이 아니다: 근력이 막아주는 노년기 위기</td><td style="text-align:center;">20</td></tr>
+        <tr><td style="text-align:center;">3부</td><td style="text-align:center;">12장</td><td>건강수명은 계산할 수 있다: 신체활동 시나리오별 미래 예측</td><td style="text-align:center;">18</td></tr>
+        <tr><td style="text-align:center;">3부</td><td style="text-align:center;">13장</td><td>한국인과 미국인, 같은 운동 다른 효과?</td><td style="text-align:center;">20</td></tr>
+        <tr><td colspan="4" class="part-header">제4부 내일의 건강을 위한 오늘의 실천</td></tr>
+        <tr><td style="text-align:center;">4부</td><td style="text-align:center;">14장</td><td>나이별 맞춤 운동 처방전: 10대부터 80대까지</td><td style="text-align:center;">22</td></tr>
+        <tr><td style="text-align:center;">4부</td><td style="text-align:center;">15장</td><td>수면, 식이, 스트레스: 운동 효과를 배가시키는 생활습관</td><td style="text-align:center;">20</td></tr>
+        <tr><td style="text-align:center;">4부</td><td style="text-align:center;">16장</td><td>사회가 함께 움직여야 한다: 건강수명을 위한 정책 제언</td><td style="text-align:center;">18</td></tr>
+        <tr><td colspan="3" style="text-align:right; font-weight:700; padding-right:12px;">합계</td><td style="text-align:center; font-weight:700;">약 330</td></tr>
+    </table>
+
+    <div class="sub-sub-heading">4) 저술결과 활용 및 기대효과</div>
+
+    <p class="no-indent"><b>① 교육적 활용</b></p>
+    <p>본 저서는 대학 교양 과목(건강과학, 스포츠의학 개론, 운동과 건강 등)의 주교재 또는 부교재로 활용될 수 있다. 특히 스포츠의학, 운동생리학, 공중보건학, 체육교육학 전공 학부생 및 대학원생에게 신체활동-대사건강-건강수명의 연결 고리를 생애주기적으로 이해하는 참고 도서로 활용 가능하다. 건강운동관리사, 스포츠지도사 등 운동 관련 자격 취득을 준비하는 수험생에게도 운동생리학의 최신 근거를 통합적으로 정리한 학습 자료가 될 수 있다.</p>
+
+    <p class="no-indent"><b>② 사회적 활용</b></p>
+    <p>신체활동의 건강수명 연장 효과를 구체적 수치와 사례로 제시함으로써, 일반 시민이 운동의 가치를 직관적으로 이해하고 실천 동기를 얻을 수 있다. 악력을 활용한 자가 건강 점검법, 생애주기별 맞춤 운동 처방전, 낙상 예방 근력 운동 프로그램 등 독자가 즉시 실천할 수 있는 콘텐츠를 제공한다. 건강 관련 공공 캠페인, 지자체 건강증진 프로그램, 기업 건강경영 교육, 노인복지관 운동 프로그램의 참고 자료로도 활용 가능하다.</p>
+
+    <p class="no-indent"><b>③ 정책적 활용</b></p>
+    <p>본 저서에서 제시하는 신체활동 증진 시나리오별 건강수명 변화 추정, 생애주기별 맞춤형 신체활동 권고안, 의료비·돌봄 비용 절감 효과 분석 등은 국민건강증진종합계획(HP2030) 및 노인복지정책 수립의 참고 자료로 활용될 수 있다. 특히 한국인 악력 기반 근감소증 진단 기준점은 1차 의료기관의 조기 선별 도구로, 낙상 예방 운동 프로그램은 노인 운동 바우처 정책의 과학적 근거로 활용 가능하다.</p>
+
+    <p class="no-indent"><b>④ 학술적 기대효과</b></p>
+    <p>본 저서는 저자가 수행 중인 중견연구자지원사업(생애주기 신체활동이 대사 건강 및 건강수명에 미치는 영향: 다중 패널 연계 분석)의 연구 성과를 교양서로 재구성한 것으로, 학술 연구의 사회적 확산이라는 가치를 지닌다. 다중 패널 통계적 매칭이라는 방법론적 혁신, 한국인 맞춤형 근감소증 진단 기준의 제시, 한-미 비교를 통한 결과의 일반화 검증 등 학술적 기여를 일반 독자에게 전달함으로써, 스포츠의학 분야의 연구가 사회에 기여하는 통로를 마련한다.</p>
+</div>
+
+<!-- ==================== 1. 저술계획 - 나. 추진일정 ==================== -->
+<div class="page page-break">
+    <div class="sub-heading">나. 추진일정</div>
+
+    <div class="schedule-label">[저술계획 일정표]</div>
+
+    <!-- 1차년도 -->
+    <table class="schedule-table">
+        <colgroup>
+            <col style="width: 15%;">
+            <col style="width: 13%;">
+            <col style="width: 52%;">
+            <col style="width: 20%;">
+        </colgroup>
+        <tr>
+            <td class="year-header" colspan="2">1차년도</td>
+            <td class="goal-label">과제목표</td>
+            <td class="goal-value">제1부·제2부 집필 완성</td>
+        </tr>
+        <tr>
+            <td class="col-header" colspan="2">기 &nbsp; 간<br><span style="font-size: 8pt;">(추진년월)</span></td>
+            <td class="col-header">내 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 용</td>
+            <td class="col-header">비 고</td>
+        </tr>
+        <tr>
+            <td class="period-cell" colspan="2">2026. 6 ~ 7</td>
+            <td class="content-cell">전체 저술 기획, 장별 세부 목차 확정, 자료 수집 및 문헌 정리, 출판사 협의·계약</td>
+            <td class="note-cell">기획 단계</td>
+        </tr>
+        <tr>
+            <td class="period-cell" colspan="2">2026. 7 ~ 10</td>
+            <td class="content-cell">제1부(1~4장) 집필: 건강수명 개념, 대사 건강 기초, 근감소증, KNHANES 데이터 시각화</td>
+            <td class="note-cell">제1부 완성</td>
+        </tr>
+        <tr>
+            <td class="period-cell" colspan="2">2026. 10 ~ 2027. 2</td>
+            <td class="content-cell">제2부(5~8장) 집필: 운동 유형별 효과, 마이오카인, 악력과 근감소증 기준점, 대사증후군 분석</td>
+            <td class="note-cell">제2부 완성</td>
+        </tr>
+    </table>
+
+    <!-- 2차년도 -->
+    <table class="schedule-table">
+        <colgroup>
+            <col style="width: 15%;">
+            <col style="width: 13%;">
+            <col style="width: 52%;">
+            <col style="width: 20%;">
+        </colgroup>
+        <tr>
+            <td class="year-header" colspan="2">2차년도</td>
+            <td class="goal-label">과제목표</td>
+            <td class="goal-value">제3부 집필 완성 및 제4부 초고 착수</td>
+        </tr>
+        <tr>
+            <td class="col-header" colspan="2">기 &nbsp; 간<br><span style="font-size: 8pt;">(추진년월)</span></td>
+            <td class="col-header">내 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 용</td>
+            <td class="col-header">비 고</td>
+        </tr>
+        <tr>
+            <td class="period-cell" colspan="2">2027. 3 ~ 6</td>
+            <td class="content-cell">제3부(9~10장) 집필: 청소년기-성인기 출생코호트 분석 결과, 패널 연계 분석을 통한 성인기 대사건강→노년기 건강결과 경로</td>
+            <td class="note-cell"></td>
+        </tr>
+        <tr>
+            <td class="period-cell" colspan="2">2027. 6 ~ 10</td>
+            <td class="content-cell">제3부(11~13장) 집필: 낙상 예방과 근력의 역할, 건강수명 산출과 정책 시나리오, 한-미 비교 분석</td>
+            <td class="note-cell">제3부 완성</td>
+        </tr>
+        <tr>
+            <td class="period-cell" colspan="2">2027. 10 ~ 2028. 2</td>
+            <td class="content-cell">제4부(14~15장) 집필: 생애주기별 맞춤 운동 처방전, 수면·식이·스트레스와 운동의 시너지</td>
+            <td class="note-cell">제4부 착수</td>
+        </tr>
+    </table>
+
+    <!-- 3차년도 -->
+    <table class="schedule-table">
+        <colgroup>
+            <col style="width: 15%;">
+            <col style="width: 13%;">
+            <col style="width: 52%;">
+            <col style="width: 20%;">
+        </colgroup>
+        <tr>
+            <td class="year-header" colspan="2">3차년도</td>
+            <td class="goal-label">과제목표</td>
+            <td class="goal-value">제4부 완성, 전체 원고 수정·보완, 출간</td>
+        </tr>
+        <tr>
+            <td class="col-header" colspan="2">기 &nbsp; 간<br><span style="font-size: 8pt;">(추진년월)</span></td>
+            <td class="col-header">내 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 용</td>
+            <td class="col-header">비 고</td>
+        </tr>
+        <tr>
+            <td class="period-cell" colspan="2">2028. 3 ~ 5</td>
+            <td class="content-cell">제4부(16장) 집필 완성: 정책 제언 및 사회적 메시지 종합</td>
+            <td class="note-cell">제4부 완성</td>
+        </tr>
+        <tr>
+            <td class="period-cell" colspan="2">2028. 5 ~ 9</td>
+            <td class="content-cell">전체 원고 통합 교정, 도표·인포그래픽 제작, 자가 점검표·운동 처방 예시 정리, 내부 검토</td>
+            <td class="note-cell">원고 수정</td>
+        </tr>
+        <tr>
+            <td class="period-cell" colspan="2">2028. 9 ~ 2029. 1</td>
+            <td class="content-cell">외부 전문가 감수(운동생리학, 내분비내과, 노인의학, 대중과학 커뮤니케이션), 출판사 편집</td>
+            <td class="note-cell">감수·편집</td>
+        </tr>
+        <tr>
+            <td class="period-cell" colspan="2">2029. 1 ~ 5</td>
+            <td class="content-cell">최종 교열, 디자인, 인쇄, 출간</td>
+            <td class="note-cell" style="font-weight:700;">출간</td>
+        </tr>
+    </table>
+</div>
+
+<!-- ==================== 2. 출판계획 ==================== -->
+<div class="page page-break">
+    <div class="section-heading">2. 출판계획</div>
+
+    <div class="sub-sub-heading">1) 출판 형태</div>
+    <p>본 저서는 교양서 형태의 단행본으로 출간하며, 국내 주요 건강·과학 분야 출판사를 통해 출판할 계획이다. 종이책과 전자책(e-book)을 동시에 출간하여 접근성을 높인다.</p>
+
+    <div class="sub-sub-heading">2) 예상 분량</div>
+    <p>출간 도서 기준 약 330쪽(신국판, 46배판 기준) 이상을 계획한다. 본문 텍스트 약 280쪽에 도표·인포그래픽(장당 2~3개), 자가 점검표, 운동 처방 예시, 참고문헌, 색인 등을 포함하여 총 330쪽 이상을 확보한다. 특히 각 장 말미에 '핵심 정리', '나를 위한 체크리스트', '오늘부터 실천하기' 코너를 배치하여 독자의 능동적 참여를 유도한다.</p>
+
+    <div class="sub-sub-heading">3) 출판사 선정 계획</div>
+    <p>건강·과학 분야 교양서 출판 경험이 풍부한 국내 출판사(사이언스북스, 동아시아, 김영사, 21세기북스, 한문화 등)를 대상으로 출판 제안서를 제출할 계획이다. 2026년 하반기(1차년도 기획 단계)에 출판사와 계약을 완료한다.</p>
+
+    <div class="sub-sub-heading">4) 독자 대상</div>
+    <p>1차 독자층은 건강 관리에 관심이 있는 일반 성인 독자이며, 특히 ① 중·장년층으로서 만성질환 예방과 근력 유지에 관심이 높은 독자, ② 부모로서 자녀의 운동 습관 형성에 관심이 있는 독자, ③ 노부모를 돌보며 낙상 예방 정보를 필요로 하는 독자를 주요 대상으로 한다. 2차 독자층은 스포츠의학, 운동생리학, 체육교육학, 공중보건학 전공 학생 및 건강운동관리사, 스포츠지도사 수험생이다. 3차 독자층은 건강 정책 입안자, 지자체 건강증진 담당자, 노인복지관 운영자 등이다.</p>
+
+    <div class="sub-sub-heading">5) 기존 저서와의 차별성</div>
+    <p>기존 건강 교양서는 대부분 ① 의학적 조언 중심(특정 질환의 예방·관리법)이거나 ② 운동 실용서 중심(운동법, 스트레칭 동작 가이드)에 머물러 있다. 전자는 "왜 운동해야 하는가?"에 대한 과학적 경로를 충분히 설명하지 못하고, 후자는 "어떻게 해야 하는가?"에만 집중하여 운동의 생리학적·역학적 근거를 다루지 못한다. 본 저서는 이 두 접근을 통합하여, ① 국가 건강 데이터(KNHANES 8만 명, KLoSA 1만 명, KYRBS 6만 명)에 기반한 실증적 근거를 교양서 수준에서 제시하고, ② 다중 패널 통계적 매칭이라는 방법론을 통해 청소년기-성인기-노년기를 관통하는 생애주기 건강 경로를 보여주며, ③ 한국인 맞춤형 근감소증 진단 기준과 한-미 비교 결과를 통해 한국인에게 최적화된 운동 전략을 제안한다는 점에서 기존 저서와 뚜렷하게 차별화된다.</p>
+
+    <div class="sub-sub-heading">6) 저술완성 분량 계획</div>
+    <table class="data-table">
+        <colgroup>
+            <col style="width: 25%;">
+            <col style="width: 18%;">
+            <col style="width: 57%;">
+        </colgroup>
+        <tr>
+            <th>구분</th><th>예상 분량</th><th>비고</th>
+        </tr>
+        <tr>
+            <td style="text-align:center;">제1부 (1~4장)</td><td style="text-align:center;">약 80쪽</td><td>도입부: 건강수명, 대사 건강, 근감소증</td>
+        </tr>
+        <tr>
+            <td style="text-align:center;">제2부 (5~8장)</td><td style="text-align:center;">약 90쪽</td><td>핵심부: 운동의 과학적 효과, 데이터 근거</td>
+        </tr>
+        <tr>
+            <td style="text-align:center;">제3부 (9~13장)</td><td style="text-align:center;">약 100쪽</td><td>독창부: 생애주기 분석, 패널 연계, 국제 비교</td>
+        </tr>
+        <tr>
+            <td style="text-align:center;">제4부 (14~16장)</td><td style="text-align:center;">약 60쪽</td><td>실용부: 맞춤 운동 처방, 생활습관, 정책 제언</td>
+        </tr>
+        <tr>
+            <td style="text-align:center; font-weight:700;">합계</td>
+            <td style="text-align:center; font-weight:700;">약 330쪽</td>
+            <td style="font-weight:700;">출간 도서 기준 300쪽 이상 충족</td>
+        </tr>
+    </table>
+</div>
+
+<!-- ==================== 3. 연구역량 ==================== -->
+<div class="page page-break">
+    <div class="section-heading">3. 연구역량</div>
+
+    <div class="sub-heading">가. 연구책임자 개요</div>
+
+    <table class="data-table">
+        <colgroup>
+            <col style="width: 13%;">
+            <col style="width: 25%;">
+            <col style="width: 13%;">
+            <col style="width: 49%;">
+        </colgroup>
+        <tr>
+            <th>성 명</th><td>정석률</td>
+            <th>소 속</th><td>차 의과학대학교 미래융합대학 스포츠의학전공</td>
+        </tr>
+        <tr>
+            <th>직 위</th><td>주임교수 / 학과장</td>
+            <th>최종학력</th><td>고려대학교 대학원 운동생리학 박사</td>
+        </tr>
+        <tr>
+            <th>전공분야</th>
+            <td colspan="3">운동생리학, 스포츠의학, 비만관리, VR 트레이닝</td>
+        </tr>
+    </table>
+
+    <div class="sub-heading">나. 본 저술 수행에 필요한 역량 및 연구 실적</div>
+
+    <p>본 저술의 성공적 수행을 위해서는 다음 네 가지 역량이 요구되며, 연구책임자는 각 영역에서 충분한 실적을 보유하고 있다.</p>
+
+    <p class="no-indent" style="margin-top:12px;"><b>① 운동생리학·수면 부족·신체활동과 만성질환에 관한 전문 지식 및 연구 경험</b></p>
+    <p class="no-indent" style="font-size:9pt;">본 저서 제2부(움직임의 과학)와 제4부(수면·식이·스트레스와 운동)의 집필에 핵심적인 역량이다.</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· [교신] Park, J., Yang, S., &amp; Jung, S. (2025). Association Between Physical Activity Levels and Chronic Disease Risk Among Korean Adults with Sleep Deficiency. <i>Journal of Clinical Medicine</i>, 14(23), 8398. (SCIE)</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· [교신] Park, J.-S., Murlasits, Z., &amp; Kim, S. (2023). The Effect of Aerobic Exercise on Variation of Oxidative Stress, Hs-CRP and Cortisol Induced by Sleep Deficiency. <i>Healthcare</i>, 11(8), 1201. (SCIE)</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· [교신] Park, J.-S., Kim, Y.-J., Heo, W., &amp; Kim, S. (2022). The Study of Variation of Metabolites by Sleep Deficiency, and Intervention Possibility of Aerobic Exercise. <i>Int. J. Environ. Res. Public Health</i>, 19(5), 2774. (SCIE)</p>
+
+    <p class="no-indent" style="margin-top:12px;"><b>② 대규모 국가 건강조사 데이터(KNHANES) 활용 및 양적 분석 역량</b></p>
+    <p class="no-indent" style="font-size:9pt;">본 저서 제1부(KNHANES 데이터 시각화), 제2부(8만 명 분석 결과), 제3부(패널 연계 분석, 건강수명 산출, 한-미 비교)의 집필에 필수적인 역량이다.</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· KNHANES 2016~2021 데이터(n=31,338) 활용 다변량 로지스틱 회귀분석 수행</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· GPAQ 기반 신체활동 수준 분류 및 MET-min/week 산출</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· 성별, 연령, BMI, 흡연, 음주, 수면시간 등 다차원적 하위집단 분석(Subgroup analysis) 수행 경험</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· 다중 패널 통계적 매칭(경향점수 매칭, Mahalanobis 거리 매칭) 기반 준종단 분석 설계 및 수행 경험 — 박대근, 박명호, 박노일(2025) 연구에서 매칭 방법론 공동 적용</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· R(StatMatch 패키지), SPSS를 활용한 기술통계, 생존분석, 매개분석, ROC 분석 등 고급 통계 분석 역량</p>
+
+    <p class="no-indent" style="margin-top:12px;"><b>③ 융합 기술(VR, AI 헬스케어) 이해 및 특허·연구 실적</b></p>
+    <p class="no-indent" style="font-size:9pt;">운동과학과 첨단 기술의 융합에 대한 이해를 바탕으로, 최신 기술 동향을 교양서 수준에서 소개하는 역량이다.</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· [특허] 휴대용 보행 교정 및 보폭 유도 장치 (등록번호: 제10-2453399호)</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· [특허] 가상현실을 이용한 상지재활 훈련 시스템 (등록번호: 제10-2640953호)</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· [연구] VR을 이용한 공간지각트레이닝이 노인의 동적균형과 뇌기능 및 하지 근활성에 미치는 영향</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· [현] 차 의과학대학교 일반대학원 AI 헬스케어융합학과 소속</p>
+
+    <p class="no-indent" style="margin-top:12px;"><b>④ 스포츠의학 현장 경험 및 교육·리더십 역량</b></p>
+    <p class="no-indent" style="font-size:9pt;">학술적 지식을 임상 현장과 교육 현장에서 적용한 풍부한 경험은, 교양서가 추구하는 실용성과 대중적 접근성을 확보하는 데 핵심적인 역량이다.</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· [현] 차 의과학대학교 미래융합대학 스포츠의학전공 주임교수/학과장</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· [현] 차 의과학대학교 스포츠의학대학원 교수</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· [전] 차 의과학대학교 학생지원처 부처장</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· [전] 국가대표 필드하키팀 트레이너 — 엘리트 스포츠 현장 경험</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· [자격] 건강운동관리사, 종목 지도자 자격(스키, 야구, 탁구, 배드민턴, 축구)</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· [수상] 포천시 우수교수상(2020), 고려대학교 석탑강의상(2011)</p>
+    <p class="no-indent" style="font-size:9pt; margin-left:12px;">· [교육] 도핑예방 보건의료 전문가 과정, 대한선수트레이너 과정 수료</p>
+
+    <div class="sub-heading">다. 저술 역량 종합</div>
+
+    <p>연구책임자(정석률)는 운동생리학 및 스포츠의학 분야에서 20년 이상의 연구·교육 경력을 보유하고 있으며, 엘리트 스포츠(국가대표팀 트레이너)부터 일반인 건강관리(건강운동관리사), 노인 재활(VR 기반 재활 시스템 특허)에 이르기까지 운동과학의 전 스펙트럼에 걸친 현장 경험을 갖추고 있다. KNHANES 대규모 데이터 기반 SCIE 논문 발표, 수면 부족과 운동 중재의 생리학적 효과에 관한 일련의 연구(2022~2025) 등은 본 저서의 학술적 엄밀성을 뒷받침한다. 동시에, 학과장으로서의 교육 리더십과 다수의 강의상 수상 경험은 복잡한 과학적 내용을 비전문가에게 효과적으로 전달하는 커뮤니케이션 역량을 입증한다. 이러한 연구·교육·현장 경험의 통합은 본 교양서가 학술적 깊이와 대중적 가독성을 겸비할 수 있는 핵심적 기반이다.</p>
+
+    <p>아울러, 본 저서의 집필 과정에서 데이터 정제, 통계 분석, 결과 시각화 등의 실무는 현재 수행 중인 중견연구자지원사업의 연구팀(박사과정 차상현: 인공지능융합 석사, 석사과정 정유연·최예원)이 지원할 예정이며, 다중 패널 통계적 매칭 방법론에 대해서는 공동연구자인 박대근(차 의과학대학교 헬스케어융합학부 교수, KAIST 경영공학 박사)의 자문을 받아 정확성을 확보한다.</p>
+</div>
+
+<!-- ==================== 4. 기타(참고문헌 포함) ==================== -->
+<div class="page page-break">
+    <div class="section-heading">4. 기타 (참고문헌 포함)</div>
+
+    <div class="sub-heading">가. 참고문헌</div>
+
+    <p class="no-indent" style="margin-bottom:4px;"><b>〈국외 문헌〉</b></p>
+    <ul class="ref-list">
+        <li>Baron, R. M., &amp; Kenny, D. A. (1986). The moderator-mediator variable distinction in social psychological research. <i>Journal of Personality and Social Psychology</i>, 51(6), 1173-1182.</li>
+        <li>Chen, L. K., Woo, J., Assantachai, P., et al. (2020). Asian Working Group for Sarcopenia: 2019 Consensus Update on Sarcopenia Diagnosis and Treatment. <i>Journal of the American Medical Directors Association</i>, 21(3), 300-307.</li>
+        <li>Conti, P. L. (2016). On the estimation of the distribution function of a finite population under high entropy sampling designs. <i>Sankhya B</i>, 78, 234-257.</li>
+        <li>D'Orazio, M., Di Zio, M., &amp; Scanu, M. (2006). <i>Statistical Matching: Theory and Practice</i>. John Wiley &amp; Sons.</li>
+        <li>Momma, H., Kawakami, R., Honda, T., &amp; Sawada, S. S. (2022). Muscle-strengthening activities are associated with lower risk and mortality in major non-communicable diseases. <i>British Journal of Sports Medicine</i>, 56(13), 755-763.</li>
+        <li>Park, J., Yang, S., &amp; Jung, S. (2025). Association Between Physical Activity Levels and Chronic Disease Risk Among Korean Adults with Sleep Deficiency. <i>Journal of Clinical Medicine</i>, 14(23), 8398.</li>
+        <li>Park, J.-S., Murlasits, Z., &amp; Kim, S. (2023). The Effect of Aerobic Exercise on Variation of Oxidative Stress, Hs-CRP and Cortisol Induced by Sleep Deficiency. <i>Healthcare</i>, 11(8), 1201.</li>
+        <li>Park, J.-S., Kim, Y.-J., Heo, W., &amp; Kim, S. (2022). The Study of Variation of Metabolites by Sleep Deficiency, and Intervention Possibility of Aerobic Exercise. <i>Int. J. Environ. Res. Public Health</i>, 19(5), 2774.</li>
+        <li>Rubin, D. B. (1986). Statistical matching using file concatenation with adjusted weights and multiple imputations. <i>Journal of Business &amp; Economic Statistics</i>, 4(1), 87-94.</li>
+        <li>Sullivan, D. F. (1971). A single index of mortality and morbidity. <i>HSMHA Health Reports</i>, 86(4), 347-354.</li>
+        <li>World Health Organization. (2020). <i>WHO guidelines on physical activity and sedentary behaviour</i>. Geneva: WHO.</li>
+    </ul>
+
+    <p class="no-indent" style="margin-top:12px; margin-bottom:4px;"><b>〈국내 문헌〉</b></p>
+    <ul class="ref-list">
+        <li>박대근, 박명호, &amp; 박노일. (2025). 고령층은 정말 달라졌나?: 최근 10년 시계열 데이터로 본 '액티브 시니어'의 소득·소비 및 뉴스 미디어 이용 변화. <i>한국소통학보</i>, 169-215.</li>
+        <li>질병관리청. (2024). 국민건강영양조사 제9기 결과 발표.</li>
+        <li>통계청. (2024). 2024 고령자 통계.</li>
+    </ul>
+
+    <div class="sub-heading">나. AI 도구 활용 내역</div>
+    <p>본 저술계획서 작성 과정에서 문장 교정 및 구조화를 위해 AI 도구(Claude, Anthropic)를 보조적으로 활용하였다. 모든 연구 내용, 분석 결과, 학술적 판단은 저자의 전문적 견해에 기반하며, AI 도구는 문장 다듬기 수준에서 활용하였다.</p>
+</div>
+
+</body>
+</html>
